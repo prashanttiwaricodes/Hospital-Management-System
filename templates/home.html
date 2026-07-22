@@ -1,0 +1,16 @@
+{% extends 'base.html' %}   
+{% block title %}
+Home
+{% endblock %}
+
+{% block content %}
+
+<div class="text-center">  
+    <h1 class="display-4">Welcome to Hospital Management System</h1>  
+    <p class="lead">            
+        Manage Doctors, Patients and Appointments Easily.
+    </p>
+    <a href="{% url 'admin:index' %}" class="btn btn-primary">Go to Admin Panel</a>   
+</div>
+
+{% endblock %}
