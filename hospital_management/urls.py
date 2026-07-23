@@ -15,10 +15,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,include   # adding include means-if we right every url inside one file it becomes huge , instead every app manages its own url this keeps project modular.
 from .views import home     # we are importing home() function because it is in another file (views.py), if we dont import it urls.py doesnt know what home is
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("",home,name="home"),  # ""-root url (http://127.0.0.1:8000/)  home-this is the function we created in views.py... when this URL is visited,Django executes  name="home"- this gives route a name ..later instead of writing URLs directly in HTML, we will use {% home %}
+    path("doctors/",include("doctors.urls")),
 ]

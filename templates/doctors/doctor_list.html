@@ -1,0 +1,36 @@
+{% extends "base.html" %}  <!--it inherites base.html-->
+{% block content %}
+{% block sidebar %}
+  Doctors
+{% endblock %}  
+ <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Doctors List</h2>
+    <a href="{% url 'doctor_add' %}" class="btn btn-success">+ Add Doctor</a>
+ </div>
+<table class="table table-bordered table-striped">  <!--bootstrap table add borders  table striped means creates alternate row colors-->
+    <thead class="table-primary">
+        <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Specialization</th>
+        <th>Email</th>
+        <th>Phone</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for doctor in doctors %}  <!--this is logic it doesnot print anything it controls the template-->
+        <tr>
+            <td>{{ doctor.id }}</td>
+            <td>{{ doctor.name }}</td>
+            <td>{{ doctor.specialization }}</td>
+            <td>{{ doctor.email }}</td>
+            <td>{{doctor.phone }}</td>
+        </tr>
+        {% empty %}  <!--for no doctors available-->
+        <tr>
+            <td colspan="5" class="text-center">No doctors available</td> 
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
