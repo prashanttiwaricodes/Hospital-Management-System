@@ -4,10 +4,11 @@ Add Doctor
 {% endblock %}
 {% block content %}
 <h2 class="mb-4">Add Doctor</h2>
-<form method="post">
+<form method="POST">
     {% csrf_token %}
     {{ form.as_p}}
 
     <button type="submit" class="btn btn-success">Save Doctor</button>
+    <a href="{% url 'doctor_list' %}" class="btn btn-secondary">Cancel</a>
 </form>
 {% endblock %}

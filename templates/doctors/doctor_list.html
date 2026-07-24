@@ -1,8 +1,9 @@
 {% extends "base.html" %}  <!--it inherites base.html-->
-{% block content %}
-{% block sidebar %}
+{% block title %}
   Doctors
-{% endblock %}  
+{% endblock %} 
+{% block content %}
+ 
  <div class="d-flex justify-content-between align-items-center mb-4">
     <h2>Doctors List</h2>
     <a href="{% url 'doctor_add' %}" class="btn btn-success">+ Add Doctor</a>
@@ -15,6 +16,7 @@
         <th>Specialization</th>
         <th>Email</th>
         <th>Phone</th>
+        <th>Action</th>
         </tr>
     </thead>
     <tbody>
@@ -25,6 +27,12 @@
             <td>{{ doctor.specialization }}</td>
             <td>{{ doctor.email }}</td>
             <td>{{doctor.phone }}</td>
+            <td>
+                <a href="{% url 'doctor_edit' doctor.pk %}" class="btn btn-warnig btn-sm">Edit</a>
+            
+            
+                <a href="{% url 'doctor_delete' doctor.pk %}" class="btn btn-warnig btn-sm">Delete</a>
+            </td>
         </tr>
         {% empty %}  <!--for no doctors available-->
         <tr>
