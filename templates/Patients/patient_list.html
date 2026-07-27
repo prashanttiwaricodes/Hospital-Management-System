@@ -4,7 +4,10 @@ Patients
 {% endblock %}
 {% block content %}
 
-<h2 class="mb-4">Patients list</h2>
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Patients List </h2>
+    <a href="{% url 'patient_add' %}" class="btn btn-success">+Add Patient</a>
+</div> 
 <table class="table table-bordered table-striped">
     <thead class="table-primary">
         <tr>
