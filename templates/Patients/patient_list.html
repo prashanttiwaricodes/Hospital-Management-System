@@ -18,6 +18,7 @@ Patients
             <th>Blood Group</th>
             <th>Phone</th>
             <th>Address</th>
+            <th>Actions</th>
         </tr>
     </thead>
         <tbody>
@@ -30,6 +31,12 @@ Patients
                 <td>{{ patient.blood_group }}</td>
                 <td>{{ patient.phone }}</td>
                 <td>{{ patient.address }}</td>
+                <td>
+                    <a href="{% url 'patient_edit' patient.pk %}" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="{% url 'patient_delete' patient.pk %}" class="btn btn-warning btn-sm">Delete</a>
+                </td>
+
+                
             </tr>
                 {% empty %}
                 <tr>
