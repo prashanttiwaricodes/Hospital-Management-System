@@ -19,6 +19,7 @@ Appointments
             <th>Reason</th>
             <th>Status</th>
             <th>Created-At</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -32,7 +33,10 @@ Appointments
             <td>{{appointment.reason}}</td>
             <td>{{appointment.status}}</td>
             <td>{{appointment.created_at}}</td>
-
+            <td>
+            <a href="{% url 'appointment_edit' appointment.pk %}" class="btn btn-warning btn-sm">Edit</a>
+            <a href="{% url 'appointment_delete' appointment.pk %}" class="btn btn-warning btn-sm">Delete</a>
+            </td>
          </tr>
            {% empty %}
            <tr>

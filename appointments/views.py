@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect, get_object_or_404
 from .models import Appointment
 from .forms import AppointmentForm
 
@@ -28,4 +28,28 @@ def appointment_add(request):
 
     return render(request,"Appointments/appointment_form.html",{"form":form})
 
-    
+
+def appointment_edit(request,pk):
+   appointment =get_object_or_404(Appointment,pk=pk)
+   if request.method=="POST":
+      form=AppointmentForm(request.POST,instance=appointment)
+      if form.is_valid():
+         form.save()
+         return redirect("appointment_list")
+      else:
+         print(form.errors)
+
+   else:
+      form=AppointmentForm(instance=appointment)
+   return render(request,"Appointments/appointment_form.html",{"form":form})  
+
+
+def appointment_delete(request,pk):
+   appointment=get_object_or_404(Appointment,pk=pk)
+   if request.method=="POST":
+      appointment.delete()
+      return redirect("appointment_list")
+
+   else:
+      form=AppointmentForm(instance=appointment)
+   return render(request,"Appointments/appointment_confirm_delete.html",{"appointment":appointment})   
