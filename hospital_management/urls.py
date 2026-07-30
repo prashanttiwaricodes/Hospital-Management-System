@@ -23,4 +23,5 @@ urlpatterns = [
     path("",home,name="home"),  # ""-root url (http://127.0.0.1:8000/)  home-this is the function we created in views.py... when this URL is visited,Django executes  name="home"- this gives route a name ..later instead of writing URLs directly in HTML, we will use {% home %}
     path("doctors/",include("doctors.urls")),
     path("patients/",include("patients.urls")),
+    path("appointments/",include("appointments.urls")),
 ]
