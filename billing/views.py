@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from .models import Bill
 from .forms import BillForm
 
@@ -19,5 +19,25 @@ def bills_add(request):
         return redirect("bills_list")
     else:
        form=BillForm()
-    return render(request,"Billings/bill_form.html",{"form":form})           
+    return render(request,"Billings/bill_form.html",{"form":form}) 
+
+
+def bills_edit(request,pk):
+    bill=get_object_or_404(Bill,pk=pk)
+    if request.method=="POST":
+        form=BillForm(request.POST,instance=bill)
+        if form.is_valid():
+         form.save()
+        return redirect("bills_list")
+    else:
+       form=BillForm(instance=bill)
+    return render(request,"Billings/bill_form.html",{"form":form})   
+
+
+def bills_delete(request,pk):
+   bill=get_object_or_404(Bill,pk=pk)
+   if request.method=="POST":
+      bill.delete()
+      return redirect("bills_list")
+   return render(request,"Billings/bill_confirm_delete.html",{"bill":bill})
     
