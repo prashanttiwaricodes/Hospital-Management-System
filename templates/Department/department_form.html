@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}
+Department adding
+{% endblock %}
+{% block content %}
+<h2 class="mb-4">Add Department Form</h2>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-success btn-sm">Save</button>
+    <a href="{% url 'department_list' %}" class="btn btn-secondary btn-sm">Cancel</a>
+</form>
+{% endblock %}
