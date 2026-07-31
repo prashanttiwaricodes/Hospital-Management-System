@@ -15,6 +15,7 @@ Department
             <th>Name</th>
             <th>Description</th>
             <th>Created-At</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -24,6 +25,12 @@ Department
             <td>{{department.name}}</td>
             <td>{{department.description}}</td>
             <td>{{department.created_at}}</td>
+            <td>
+                <a href="{% url 'department_edit' department.pk %}" class="btn btn-warning btn-sm">Edit</a>
+
+                
+                <a href="{% url 'department_delete' department.pk %}" class="btn btn-warning btn-sm">Delete</a>
+            </td>
         </tr>
         {% empty %}
         <tr>
