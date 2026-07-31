@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}
+Confirm Delete
+{% endblock %}
+{% block content %}
+<h2 class="mb-4">Delete Prescriptions</h2>
+<p>are you sure you want to delete<strong> {{prescription.appointment}}</strong>
+</p>
+<form method="POST">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger btn-sm">yes Delete</button>
+    <a href="{% url 'prescription_list' %}"class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

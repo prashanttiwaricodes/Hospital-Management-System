@@ -7,7 +7,7 @@ Prescription
 
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h2>Prescription List</h2>
-    <a href="{% url 'prescription_add' %}" class="btn btn-success btn-sm">+ Add</a>
+    <a href="{% url 'prescription_add' %}" class="btn btn-success btn-sm">+ Add Prescription</a>
 </div>
 <table class="table table-bordered table-striped">
     <thead class="table-primary">
@@ -19,6 +19,7 @@ Prescription
             <th>Dosage</th>
             <th>Instructions</th>
             <th>Created-At</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -31,6 +32,12 @@ Prescription
             <td>{{prescription.dosage}}</td>
             <td>{{prescription.instructions}}</td>
             <td>{{prescription.created_at}}</td>
+            <td>
+                <a href="{% url 'prescription_edit' prescription.pk %}" class="btn btn-warning btn-sm">Edit</a>
+            
+            
+                <a href="{% url 'prescription_delete' prescription.pk %}" class="btn btn-warning btn-sm">Delete</a>
+            </td>
         </tr>
            {% empty %}
         <tr>

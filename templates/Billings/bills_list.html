@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block title %}
+Bills
+{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Bills List</h2>
+    <a href="{% url 'bills_add' %}" class="btn btn-success btn-sm">+Add Bills</a>
+</div>
+<table class="table table-bordered table-striped">
+    <thead class="table-primary">
+        <tr>
+            <th> Id</th>
+            <th>Patient</th>
+            <th>Amount</th>
+            <th>Payment</th>
+            <th>Billing-Date</th>
+            <th>Created-At</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for bill in bills %}
+        <tr>
+            <td>{{bill.id}} </td>
+            <td>{{bill.patient}}</td>
+            <td>{{bill.amount}}</td>
+            <td>{{bill.payment_status}}</td>
+            <td>{{bill.bill_date}}</td>
+            <td>{{bill.created_at}}</td>
+            <td>
+                <a href="{% url 'bills_edit' bill.pk %}" class="btn btn-warning btn-sm">Edit</a>
+
+
+                <a href="{% url 'bills_delete' bill.pk %}" class="btn btn-warning btn-sm">Delete</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="6" class="align-text-center">no bills Available</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Prescription
+from .forms import PrescriptionForm
 
 # Create your views here.
 def prescription_list(request):
@@ -13,4 +14,36 @@ def prescription_list(request):
 
 
 def prescription_add(request):
-    pass   
+    if request.method=="POST":
+        form=PrescriptionForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("prescription_list")
+    else:
+        form=PrescriptionForm()
+    return render(request,"Prescriptions/prescription_form.html",{"form":form}) 
+
+
+def prescription_edit(request,pk):
+    prescription=get_object_or_404(Prescription,pk=pk)
+    if request.method=="POST":
+        form=PrescriptionForm(request.POST,instance=prescription)
+        if form.is_valid():
+            form.save()
+            return redirect("prescription_list")
+    else:
+        form=PrescriptionForm(instance=prescription)
+    return render(request,"Prescriptions/prescription_form.html",{"form":form})    
+
+
+
+def prescription_delete(request,pk):
+    prescription=get_object_or_404(Prescription,pk=pk)
+    if request.method=="POST":
+        prescription.delete()
+        return redirect("prescription_list")
+    return render(request,"Prescriptions/prescription_confirm_delete.html",{"prescription":prescription})    
+    
+
+    
+
