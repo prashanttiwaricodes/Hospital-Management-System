@@ -5,6 +5,8 @@ from appointments.models import Appointment
 from billing.models import Bill
 from prescriptions.models import Prescription
 from departments.models import Department
+import json
+from datetime import date
 
 def home(request):   #This creates a function named home...Every django view recieves a request object
     doctor_count=Doctor.objects.count()
@@ -13,13 +15,15 @@ def home(request):   #This creates a function named home...Every django view rec
     bill_count=Bill.objects.count()
     prescription_count=Prescription.objects.count()
     department_count=Department.objects.count()
-
+    today=date.today()
     context={
+        
         "doctor_count":doctor_count,
         "patient_count":patient_count,
         "appointment_count":appointment_count,
         "bill_count":bill_count,
         "prescription_count":prescription_count,
         "department_count":department_count,
+        "today":today,
     }
-    return render(request,"home.html",context)  #this means- take the incoming request, find home.html , Return it to browser 
+    return render(request,"home.html",context,)  #this means- take the incoming request, find home.html , Return it to browser 
