@@ -1,16 +1,19 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Prescription
 from .forms import PrescriptionForm
+from django.core.paginator import Paginator
 
 # Create your views here.
 def prescription_list(request):
-    prescriptions=Prescription.objects.all()
+    prescriptions=Prescription.objects.all().order_by("id")
+    paginator=Paginator(prescriptions,5)
 
-    context={
-        "prescriptions":prescriptions
-    }
+    page_number=request.GET.get('page')
+    page_obj=paginator.get_page(page_number)
 
-    return render(request,"Prescriptions/prescription_list.html",context)
+   
+
+    return render(request,"Prescriptions/prescription_list.html",{"page_obj":page_obj})
 
 
 def prescription_add(request):

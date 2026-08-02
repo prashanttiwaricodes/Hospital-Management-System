@@ -1,14 +1,16 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from .models import Bill
 from .forms import BillForm
+from django.core.paginator import Paginator
 
 # Create your views here.
 def bills_list(request):
-    bills=Bill.objects.all()
-    context={
-        "bills":bills
-    }
-    return render(request,"Billings/bills_list.html",context)
+    bills=Bill.objects.all().order_by("id")
+    paginator=Paginator(bills,5)
+    page_number=request.GET.get('page')
+    page_obj=paginator.get_page(page_number)
+   
+    return render(request,"Billings/bills_list.html",{"page_obj":page_obj})
 
 
 def bills_add(request):
