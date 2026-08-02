@@ -1,16 +1,18 @@
 from django.shortcuts import render,redirect, get_object_or_404
 from .models import Appointment
 from .forms import AppointmentForm
+from django.core.paginator import Paginator
 
 # Create your views here.
 def appointment_list(request):
-    appointments=Appointment.objects.all()
+    appointments=Appointment.objects.all().order_by("id")
+    paginator=Paginator(appointments,5)
 
-    context= {
-        "appointments": appointments
-    }
+    page_number=request.GET.get('page')
+    page_obj=paginator.get_page(page_number)
 
-    return render(request,"Appointments/appointment_list.html",context)
+    
+    return render(request,"Appointments/appointment_list.html",{"page_obj":page_obj})
 
 
 

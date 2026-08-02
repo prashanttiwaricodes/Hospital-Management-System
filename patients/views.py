@@ -1,16 +1,19 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from .models import Patient
 from .forms import PatientForm
+from django.core.paginator import Paginator
 
 # Create your views here.
 def patient_list(request):
-    patients=Patient.objects.all()
+    patients=Patient.objects.all().order_by("id")
+    paginator=Paginator(patients,5)
 
-    context={
-        "patients":patients
-    }
+    page_number=request.GET.get('page')
+    page_obj=paginator.get_page(page_number)
 
-    return render(request,"patients/patient_list.html",context)
+   
+
+    return render(request,"patients/patient_list.html",{'page_obj':page_obj})
 
 def patient_add(request):
     if request.method=="POST":
