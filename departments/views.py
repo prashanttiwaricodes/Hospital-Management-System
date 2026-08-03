@@ -2,8 +2,11 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Department
 from .forms import DepartmentForm
 from django.core.paginator import Paginator
+from django.contrib.auth.decorators import login_required
+
 
 # Create your views here.
+@login_required
 def department_list(request):
     department=Department.objects.all().order_by("id")
     paginator=Paginator(department,5)

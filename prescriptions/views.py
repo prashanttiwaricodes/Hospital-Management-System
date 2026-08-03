@@ -2,8 +2,12 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Prescription
 from .forms import PrescriptionForm
 from django.core.paginator import Paginator
+from django.contrib.auth.decorators import login_required
+
 
 # Create your views here.
+
+@login_required
 def prescription_list(request):
     prescriptions=Prescription.objects.all().order_by("id")
     paginator=Paginator(prescriptions,5)

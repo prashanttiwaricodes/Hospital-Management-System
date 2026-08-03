@@ -2,8 +2,12 @@ from django.shortcuts import render,redirect,get_object_or_404
 from .models import Bill
 from .forms import BillForm
 from django.core.paginator import Paginator
+from django.contrib.auth.decorators import login_required
+
 
 # Create your views here.
+
+@login_required
 def bills_list(request):
     bills=Bill.objects.all().order_by("id")
     paginator=Paginator(bills,5)
