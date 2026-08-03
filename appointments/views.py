@@ -2,8 +2,12 @@ from django.shortcuts import render,redirect, get_object_or_404
 from .models import Appointment
 from .forms import AppointmentForm
 from django.core.paginator import Paginator
+from django.contrib.auth.decorators import login_required
+
 
 # Create your views here.
+
+@login_required
 def appointment_list(request):
     appointments=Appointment.objects.all().order_by("id")
     paginator=Paginator(appointments,5)

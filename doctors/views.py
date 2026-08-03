@@ -2,7 +2,14 @@ from django.shortcuts import render,redirect,get_object_or_404
 from .models import Doctor  #we are importing Doctor model without this we cannot access databse table
 from .forms import DoctorForm
 from django.core.paginator import Paginator
+from django.contrib.auth.decorators import login_required
+
+
 # Create your views here.
+
+
+
+@login_required
 def doctor_list(request):
     doctors=Doctor.objects.all().order_by('id')  #give me all doctors from the database 
 
