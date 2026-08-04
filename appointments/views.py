@@ -3,6 +3,7 @@ from .models import Appointment
 from .forms import AppointmentForm
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 
 # Create your views here.
@@ -25,6 +26,7 @@ def appointment_add(request):
         form=AppointmentForm(request.POST)
         if form.is_valid():
            form.save()
+           messages.success(request,"New Appointment added")
            return redirect("appointment_list")
         else:
            print(form.errors)
@@ -41,6 +43,7 @@ def appointment_edit(request,pk):
       form=AppointmentForm(request.POST,instance=appointment)
       if form.is_valid():
          form.save()
+         messages.success(request,"appointment edited successfully")
          return redirect("appointment_list")
       else:
          print(form.errors)
@@ -54,6 +57,7 @@ def appointment_delete(request,pk):
    appointment=get_object_or_404(Appointment,pk=pk)
    if request.method=="POST":
       appointment.delete()
+      messages.success(request,"appointment deleted")
       return redirect("appointment_list")
 
    else:
