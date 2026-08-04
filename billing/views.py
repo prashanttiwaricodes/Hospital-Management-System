@@ -3,6 +3,7 @@ from .models import Bill
 from .forms import BillForm
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 
 # Create your views here.
@@ -22,6 +23,7 @@ def bills_add(request):
         form=BillForm(request.POST)
         if form.is_valid():
          form.save()
+         messages.success(request,"New bill added ")
         return redirect("bills_list")
     else:
        form=BillForm()
@@ -34,6 +36,7 @@ def bills_edit(request,pk):
         form=BillForm(request.POST,instance=bill)
         if form.is_valid():
          form.save()
+         messages.success(request,"bill edited successfully")
         return redirect("bills_list")
     else:
        form=BillForm(instance=bill)
@@ -44,6 +47,7 @@ def bills_delete(request,pk):
    bill=get_object_or_404(Bill,pk=pk)
    if request.method=="POST":
       bill.delete()
+      messages.success(request,"Bill Deleted")
       return redirect("bills_list")
    return render(request,"Billings/bill_confirm_delete.html",{"bill":bill})
     

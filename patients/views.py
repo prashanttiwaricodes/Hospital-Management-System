@@ -3,6 +3,7 @@ from .models import Patient
 from .forms import PatientForm
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 
 
@@ -26,9 +27,11 @@ def patient_add(request):
 
        if form.is_valid():
           form.save()
+          messages.success(request,"Patient added successfulyy")
           return redirect("patient_list")
     else:        
       form=PatientForm()
+     
     return render(request,"Patients/patient_form.html",{"form":form})
 
 
@@ -40,9 +43,11 @@ def patient_edit(request,pk):
 
       if form.is_valid():
          form.save()
+         messages.success(request,"Patient details edited successfully")
          return redirect("patient_list")
     else:
        form=PatientForm(instance=patient)  
+      
     return render(request,"Patients/patient_form.html",{"form":form}) 
 
 
@@ -50,5 +55,6 @@ def patient_delete(request,pk):
    patient=get_object_or_404(Patient,pk=pk)  
    if request.method=="POST":
       patient.delete()
+      messages.success(request,"Patient deleted successfuly")
       return redirect("patient_list")
    return render(request,"patients/patient_confirm_delete.html",{"patient":patient})

@@ -27,6 +27,7 @@ def login_view(request):
 
         if user is not None:
             login (request,user)
+            messages.success(request,"Login successfull")
             return redirect("home")
             
         else:
@@ -36,7 +37,7 @@ def login_view(request):
 
 def logout_view(request):
    logout(request)
-   messages.success(request,"Logged out successfully.")
+   messages.info(request,"Logged out successfully.")
    return redirect("login")
 
 

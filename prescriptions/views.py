@@ -3,6 +3,7 @@ from .models import Prescription
 from .forms import PrescriptionForm
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 
 # Create your views here.
@@ -25,6 +26,7 @@ def prescription_add(request):
         form=PrescriptionForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request," New Prescriptions added successfully")
             return redirect("prescription_list")
     else:
         form=PrescriptionForm()
@@ -37,6 +39,7 @@ def prescription_edit(request,pk):
         form=PrescriptionForm(request.POST,instance=prescription)
         if form.is_valid():
             form.save()
+            messages.success(request,"Prescriptions edited successfully")
             return redirect("prescription_list")
     else:
         form=PrescriptionForm(instance=prescription)
@@ -48,6 +51,7 @@ def prescription_delete(request,pk):
     prescription=get_object_or_404(Prescription,pk=pk)
     if request.method=="POST":
         prescription.delete()
+        messages.success(request,"Presciption deleted successfully")
         return redirect("prescription_list")
     return render(request,"Prescriptions/prescription_confirm_delete.html",{"prescription":prescription})    
     

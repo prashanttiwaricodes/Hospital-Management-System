@@ -59,6 +59,17 @@
     </nav>
     <!---Navbar Ends-->
 
+
+    {% if messages %}
+       {% for message in messages %}
+       <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}
+       {% endif %} alert-dismissible fade show mt-3" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" area-label="Close"></button>
+       </div>
+       {% endfor %}
+    {% endif %}   
+
     <!---Main Content Starts-->
 
     <div class="container mt-4">

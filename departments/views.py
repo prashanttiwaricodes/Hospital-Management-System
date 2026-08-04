@@ -3,6 +3,7 @@ from .models import Department
 from .forms import DepartmentForm
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 
 # Create your views here.
@@ -23,6 +24,7 @@ def department_add(request):
         form=DepartmentForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request," New Department added")
             return redirect("department_list")
     else:
         form=DepartmentForm()
@@ -37,6 +39,7 @@ def department_edit(request,pk):
         form=DepartmentForm(request.POST,instance=department)
         if form.is_valid():
             form.save()
+            messages.success(request,"department edited successfully")
             return redirect("department_list")
     else:
         form=DepartmentForm(instance=department)
@@ -48,5 +51,6 @@ def department_delete(request,pk):
     department=get_object_or_404(Department,pk=pk)
     if request.method=="POST":
         department.delete()
+        messages.success(request,"Department Deleted")
         return redirect("department_list")
     return render(request,"Department/department_confirm_delete.html",{"department":department})
