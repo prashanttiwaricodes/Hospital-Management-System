@@ -8,6 +8,13 @@
     <h2>Doctors List</h2>
     <a href="{% url 'doctor_add' %}" class="btn btn-success">+ Add Doctor</a>
  </div>
+ <form method="GET" class="mb-3">
+    <div class="input-group">
+        <input type="text" name="search" class="form-control" placeholder="search doctor by name..." value="{{ request.GET.search }}">
+
+        <button class="btn btn-primary" type="submit">Search</button>
+    </div>
+ </form>
 <table class="table table-bordered table-striped">  <!--bootstrap table add borders  table striped means creates alternate row colors-->
     <thead class="table-primary">
         <tr>

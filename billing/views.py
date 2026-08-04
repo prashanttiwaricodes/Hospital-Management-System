@@ -10,7 +10,11 @@ from django.contrib import messages
 
 @login_required
 def bills_list(request):
+   
     bills=Bill.objects.all().order_by("id")
+    
+
+
     paginator=Paginator(bills,5)
     page_number=request.GET.get('page')
     page_obj=paginator.get_page(page_number)

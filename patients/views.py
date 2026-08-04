@@ -11,7 +11,14 @@ from django.contrib import messages
 
 @login_required
 def patient_list(request):
+    search=request.GET.get("search")
+   
     patients=Patient.objects.all().order_by("id")
+
+    if search:
+       patients=patients.filter(name__icontains=search)
+
+       
     paginator=Paginator(patients,5)
 
     page_number=request.GET.get('page')

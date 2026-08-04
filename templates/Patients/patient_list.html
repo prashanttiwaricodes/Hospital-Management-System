@@ -8,6 +8,14 @@ Patients
     <h2>Patients List </h2>
     <a href="{% url 'patient_add' %}" class="btn btn-success">+Add Patient</a>
 </div> 
+
+<form method="GET" class="mb-3">
+    <div class="input-group">
+        <input type="text" name="search" class="form-control" placeholder="search patient name..." value="{{ request.GET.search }}">
+
+        <button class="btn btn-primary" type="submit">Search</button>
+    </div>
+ </form>
 <table class="table table-bordered table-striped">
     <thead class="table-primary">
         <tr>
