@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'prescriptions',
     'billing',
     'departments',
+    'rest_framework',
+    
     
 ]
 
