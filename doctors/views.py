@@ -12,7 +12,11 @@ from django.contrib import messages
 
 @login_required
 def doctor_list(request):
+    search=request.GET.get("search")
     doctors=Doctor.objects.all().order_by('id')  #give me all doctors from the database 
+
+    if search:
+       doctors=doctors.filter(name__icontains=search)
 
     paginator=Paginator(doctors,5)  # 5 doctors per page
     page_number=request.GET.get('page')

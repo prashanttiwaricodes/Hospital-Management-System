@@ -9,7 +9,11 @@ from django.contrib import messages
 # Create your views here.
 @login_required
 def department_list(request):
+    
     department=Department.objects.all().order_by("id")
+
+    
+
     paginator=Paginator(department,5)
     page_number=request.GET.get('page')
     page_obj=paginator.get_page(page_number)

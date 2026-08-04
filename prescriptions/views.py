@@ -10,7 +10,10 @@ from django.contrib import messages
 
 @login_required
 def prescription_list(request):
+   
     prescriptions=Prescription.objects.all().order_by("id")
+
+   
     paginator=Paginator(prescriptions,5)
 
     page_number=request.GET.get('page')

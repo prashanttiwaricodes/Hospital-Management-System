@@ -10,7 +10,10 @@ from django.contrib import messages
 
 @login_required
 def appointment_list(request):
+    
     appointments=Appointment.objects.all().order_by("id")
+
+   
     paginator=Paginator(appointments,5)
 
     page_number=request.GET.get('page')
