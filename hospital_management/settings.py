@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'billing',
     'departments',
     'rest_framework',
+    'api',
     
     
 ]

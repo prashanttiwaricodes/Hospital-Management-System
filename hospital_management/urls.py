@@ -29,6 +29,6 @@ urlpatterns = [
     path("prescriptions/",include("prescriptions.urls")),
     path("billing/",include("billing.urls")),
     path("departments/",include("departments.urls")),
-    path("",include("patients.urls")),
-    path("",include("doctors.urls")),
+    path("api/",include("api.urls")),
+    
 ]

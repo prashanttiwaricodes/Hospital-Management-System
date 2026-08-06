@@ -6,9 +6,6 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
 
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from .serializers import DoctorSerializer
 
 
 # Create your views here.
@@ -75,17 +72,6 @@ def doctor_delete(request,pk):
 
 
 
-
-#---------API View -----------------    
-
-
-class DoctorListAPIView(APIView):
-
-   def get(self,request):
-      doctors=Doctor.objects.all()
-      serializer=DoctorSerializer(doctors,many=True)
-
-      return Response(serializer.data)
 
 
 
