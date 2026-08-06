@@ -29,6 +29,36 @@ class PatientListAPIView(APIView):
       return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
 
 
+class PatientDetailAPIView(APIView):
+   def get_object(self,pk):
+      return Patient.objects.get(pk=pk)
+
+   def get(self,request,pk):
+      patient=self.get_object(pk)
+      serializer=PatientSerializer(patient)   
+      return Response(serializer.data)
+
+   def put(self,request,pk):
+      patient=self.get_object(pk)
+
+      serializer=PatientSerializer(patient,data=request.data)
+      if serializer.is_valid():
+         serializer.save()
+         return Response(serializer.data)
+
+      return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+
+
+   def delete(self,request,pk):
+      patient=self.get_object(pk)
+      patient.delete()
+
+      return Response(
+         {"message":"Patient Deleted Successfully"},
+         status=status.HTTP_204_NO_CONTENT
+      )
+
+
 
 
 
