@@ -81,3 +81,14 @@ class DoctorListAPIView(APIView):
          serializer.save()
          return Response(serializer.data,status=status.HTTP_201_CREATED)  
       return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+
+
+
+
+
+  #-------ModelViewSet-----------
+from rest_framework.viewsets import ModelViewSet   
+
+class PatientViewSet(ModelViewSet):
+   queryset=Patient.objects.all()
+   serializer_class=PatientSerializer
