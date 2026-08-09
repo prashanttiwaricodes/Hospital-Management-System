@@ -87,8 +87,14 @@ class DoctorListAPIView(APIView):
 
 
   #-------ModelViewSet-----------
-from rest_framework.viewsets import ModelViewSet   
+from rest_framework.viewsets import ModelViewSet  
+from rest_framework.permissions import IsAuthenticated 
+from .permissions import IsAdminOrReadOnly
 
 class PatientViewSet(ModelViewSet):
    queryset=Patient.objects.all()
    serializer_class=PatientSerializer
+
+   permission_classes=[IsAdminOrReadOnly]
+
+   
