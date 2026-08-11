@@ -90,11 +90,19 @@ class DoctorListAPIView(APIView):
 from rest_framework.viewsets import ModelViewSet  
 from rest_framework.permissions import IsAuthenticated 
 from .permissions import IsAdminOrReadOnly
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.filters import SearchFilter,OrderingFilter
 
 class PatientViewSet(ModelViewSet):
    queryset=Patient.objects.all()
    serializer_class=PatientSerializer
 
    permission_classes=[IsAdminOrReadOnly]
+   filter_backends=[DjangoFilterBackend,SearchFilter,OrderingFilter]
+   filterset_fields=["gender","blood_group"]
+   search_fields=["name","address"]
+   ordering_fields=["name","age","id"]
+   ordering=["id"]
+
 
    
