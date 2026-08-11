@@ -7,6 +7,8 @@ from doctors.models import Doctor
 from doctors.serializers import DoctorSerializer
 from departments.models import Department
 from departments.serializers import DepartmentSerializer
+from appointments.models import Appointment
+from appointments.serializers import AppointmentSerializer
 
 # Create your views here.
 
@@ -132,6 +134,19 @@ class DepartmentViewSet(ModelViewSet):
    filter_backends=[DjangoFilterBackend,SearchFilter,OrderingFilter]
    search_fields=["name"]
    ordering_fields=["id"]
+
+
+
+
+class AppointmentViewSet(ModelViewSet):
+   queryset=Appointment.objects.all()
+   serializer_class=AppointmentSerializer   
+
+   permission_classes=[IsAdminOrReadOnly]
+   filter_backends=[DjangoFilterBackend,OrderingFilter]
+   filterset_fields=["status"]
+   ordering_fields=["id","appointment_date"]
+   ordering=["appointment_date"]
 
    
 
