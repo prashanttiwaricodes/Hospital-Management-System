@@ -1,5 +1,5 @@
 from django.urls import path,include
-from .views import PatientListAPIView,PatientDetailAPIView,DoctorListAPIView,PatientViewSet,DoctorViewSet,DepartmentViewSet,AppointmentViewSet
+from .views import PatientListAPIView,PatientDetailAPIView,DoctorListAPIView,PatientViewSet,DoctorViewSet,DepartmentViewSet,AppointmentViewSet,PrescriptionViewSet
 from rest_framework.routers import DefaultRouter
 
 
@@ -9,6 +9,7 @@ router.register("patients-v2",PatientViewSet)
 router.register("doctors-v2",DoctorViewSet)
 router.register("departments",DepartmentViewSet)
 router.register(r"appointments",AppointmentViewSet,basename='appointment')
+router.register("prescriptions",PrescriptionViewSet)
 
 urlpatterns=[
     path("patients/",PatientListAPIView.as_view(),name="patient-list"),

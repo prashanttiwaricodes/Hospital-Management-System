@@ -9,6 +9,8 @@ from departments.models import Department
 from departments.serializers import DepartmentSerializer
 from appointments.models import Appointment
 from appointments.serializers import AppointmentSerializer
+from prescriptions.models import Prescription
+from prescriptions.serializers import PrescriptionSerializer
 
 # Create your views here.
 
@@ -147,6 +149,14 @@ class AppointmentViewSet(ModelViewSet):
    filterset_fields=["status"]
    ordering_fields=["id","appointment_date"]
    ordering=["appointment_date"]
+
+
+
+class PrescriptionViewSet(ModelViewSet):
+   queryset=Prescription.objects.all()
+   serializer_class=PrescriptionSerializer
+
+   permission_classes=[IsAdminOrReadOnly]
 
    
 
