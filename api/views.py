@@ -105,4 +105,20 @@ class PatientViewSet(ModelViewSet):
    ordering=["id"]
 
 
+
+
+
+class DoctorViewSet(ModelViewSet):  
+   queryset=Doctor.objects.all()
+   serializer_class=DoctorSerializer
+
+   permission_classes=[IsAdminOrReadOnly] 
+   filter_backends=[DjangoFilterBackend,SearchFilter,OrderingFilter]
+   filterset_fields=["specialization"]
+   search_fields=["name","specialization"]
+   ordering_fields=["name","id"]
+   ordering=["id"]
+   
+
+
    
