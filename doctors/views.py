@@ -6,6 +6,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
 
+
+
 # Create your views here.
 
 
@@ -67,4 +69,9 @@ def doctor_delete(request,pk):
    return render(request,"doctors/doctor_confirm_delete.html",{"doctor":doctor})
 
 
-    
+
+
+
+
+
+

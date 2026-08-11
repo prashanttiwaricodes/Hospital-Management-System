@@ -7,6 +7,9 @@ from django.contrib import messages
 
 
 
+
+
+
 # Create your views here.
 
 @login_required
@@ -65,3 +68,7 @@ def patient_delete(request,pk):
       messages.success(request,"Patient deleted successfuly")
       return redirect("patient_list")
    return render(request,"patients/patient_confirm_delete.html",{"patient":patient})
+
+
+
+

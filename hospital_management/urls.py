@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path,include   # adding include means-if we right every url inside one file it becomes huge , instead every app manages its own url this keeps project modular.
 from .views import home     # we are importing home() function because it is in another file (views.py), if we dont import it urls.py doesnt know what home is
 from . import views
+from rest_framework_simplejwt.views import(TokenObtainPairView,TokenRefreshView,)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("login/",views.login_view,name="login"),
@@ -29,4 +30,8 @@ urlpatterns = [
     path("prescriptions/",include("prescriptions.urls")),
     path("billing/",include("billing.urls")),
     path("departments/",include("departments.urls")),
+    path("api/",include("api.urls")),
+    path("api/token/",TokenObtainPairView.as_view(),name="token_obtain_pair"),
+    path("api/token/refresh/",TokenRefreshView.as_view(),name="token_refresh"),
+    
 ]
