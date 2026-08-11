@@ -5,6 +5,8 @@ from patients.serializers import PatientSerializer
 from rest_framework import status
 from doctors.models import Doctor
 from doctors.serializers import DoctorSerializer
+from departments.models import Department
+from departments.serializers import DepartmentSerializer
 
 # Create your views here.
 
@@ -118,6 +120,19 @@ class DoctorViewSet(ModelViewSet):
    search_fields=["name","specialization"]
    ordering_fields=["name","id"]
    ordering=["id"]
+
+
+
+
+class DepartmentViewSet(ModelViewSet):
+   queryset=Department.objects.all() 
+   serializer_class=DepartmentSerializer
+
+   permission_classes=[IsAdminOrReadOnly]
+   filter_backends=[DjangoFilterBackend,SearchFilter,OrderingFilter]
+   search_fields=["name"]
+   ordering_fields=["id"]
+
    
 
 
