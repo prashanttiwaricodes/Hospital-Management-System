@@ -11,6 +11,8 @@ from appointments.models import Appointment
 from appointments.serializers import AppointmentSerializer
 from prescriptions.models import Prescription
 from prescriptions.serializers import PrescriptionSerializer
+from billing.models import Bill
+from billing.serializers import BillSerializer
 
 # Create your views here.
 
@@ -157,6 +159,23 @@ class PrescriptionViewSet(ModelViewSet):
    serializer_class=PrescriptionSerializer
 
    permission_classes=[IsAdminOrReadOnly]
+
+
+
+
+
+
+
+
+class BillViewSet(ModelViewSet):
+   queryset=Bill.objects.all() 
+   serializer_class=BillSerializer
+
+   permission_classes=[IsAdminOrReadOnly]
+   filter_backends=[DjangoFilterBackend,SearchFilter]
+   search_fields=["patient__name"]
+
+      
 
    
 
