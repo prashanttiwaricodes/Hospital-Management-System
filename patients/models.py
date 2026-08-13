@@ -14,7 +14,7 @@ class Patient(models.Model):
     ]
     GENDER_CHOICES=[
         ('Male','Male'),
-        ('Feamale','Female'),
+        ('Female','Female'),
         ('Other','Other'),
     ]
     name=models.CharField(max_length=200)
