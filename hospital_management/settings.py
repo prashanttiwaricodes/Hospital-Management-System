@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'api',
     'django_filters',
+    'drf_spectacular',
     
     
 ]
@@ -152,6 +153,8 @@ REST_FRAMEWORK={
     "DEFAULT_FILTER_BACKENDS":[
         "django_filters.rest_framework.DjangoFilterBackend",
     ],
+
+    "DEFAULT_SCHEMA_CLASS":"drf_spectacular.openapi.AutoSchema",
 }
 from datetime import timedelta
 
@@ -160,3 +163,9 @@ SIMPLE_JWT={
     'REFRESH_TOKEN_LIFETIME':timedelta(days=7),
 }
 
+
+SPECTACULAR_SETTINGS={
+    "TITLE":"Hospital Management API",
+    "DESCRIPTION":"API documentation for Hospital Management System",
+    "VERSION":"1.0.0",
+}

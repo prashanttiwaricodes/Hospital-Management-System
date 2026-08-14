@@ -19,6 +19,7 @@ from django.urls import path,include   # adding include means-if we right every 
 from .views import home     # we are importing home() function because it is in another file (views.py), if we dont import it urls.py doesnt know what home is
 from . import views
 from rest_framework_simplejwt.views import(TokenObtainPairView,TokenRefreshView,)
+from drf_spectacular.views import(SpectacularAPIView,SpectacularSwaggerView,)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("login/",views.login_view,name="login"),
@@ -33,5 +34,7 @@ urlpatterns = [
     path("api/",include("api.urls")),
     path("api/token/",TokenObtainPairView.as_view(),name="token_obtain_pair"),
     path("api/token/refresh/",TokenRefreshView.as_view(),name="token_refresh"),
+    path("api/schema/",SpectacularAPIView.as_view(),name="schema"),
+    path("api/docs/",SpectacularSwaggerView.as_view(url_name="schema"),name="swagger-ui"),
     
 ]
