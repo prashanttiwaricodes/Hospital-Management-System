@@ -168,4 +168,19 @@ SPECTACULAR_SETTINGS={
     "TITLE":"Hospital Management API",
     "DESCRIPTION":"API documentation for Hospital Management System",
     "VERSION":"1.0.0",
+
+    "SECURITY":[
+        {
+            "BearerAuth":[]
+        }
+    ],
+    "COMPONENTS":{
+        "securitySchemes":{
+            "BearerAuth":{
+                "type":"http",
+                "scheme":"bearer",
+                "bearerFormat":"JWT",
+            }
+        }
+    },
 }
