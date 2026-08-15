@@ -4,3 +4,5 @@ __pycache__/
 db.sqlite3
 .env
 media/
+old_data.json
+data.json
