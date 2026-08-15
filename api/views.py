@@ -13,6 +13,7 @@ from prescriptions.models import Prescription
 from prescriptions.serializers import PrescriptionSerializer
 from billing.models import Bill
 from billing.serializers import BillSerializer
+from drf_spectacular.utils import extend_schema
 
 # Create your views here.
 
@@ -141,7 +142,7 @@ class DepartmentViewSet(ModelViewSet):
 
 
 
-
+@extend_schema(tags=["Appointments"])
 class AppointmentViewSet(ModelViewSet):
    queryset=Appointment.objects.all()
    serializer_class=AppointmentSerializer   
