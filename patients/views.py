@@ -29,7 +29,7 @@ def patient_list(request):
 
    
 
-    return render(request,"patients/patient_list.html",{'page_obj':page_obj})
+    return render(request,"Patients/patient_list.html",{'page_obj':page_obj})
 
 def patient_add(request):
     if request.method=="POST":
@@ -67,7 +67,7 @@ def patient_delete(request,pk):
       patient.delete()
       messages.success(request,"Patient deleted successfuly")
       return redirect("patient_list")
-   return render(request,"patients/patient_confirm_delete.html",{"patient":patient})
+   return render(request,"Patients/patient_confirm_delete.html",{"patient":patient})
 
 
 
