@@ -58,11 +58,13 @@ INSTALLED_APPS = [
     'api',
     'django_filters',
     'drf_spectacular',
+    'corsheaders',
     
     
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.Corsmiddleware',
     'django.middleware.security.SecurityMiddleware',
     "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -203,3 +205,6 @@ SPECTACULAR_SETTINGS={
         }
     },
 }
+
+
+CORS_ALLOW_ALL_ORIGINS =True
